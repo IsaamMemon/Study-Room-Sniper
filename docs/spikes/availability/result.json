@@ -1,0 +1,24 @@
+{
+  "simulated_hours": 24,
+  "rooms": 17,
+  "active_watches": 200,
+  "persistent_releases": 100,
+  "stale_candidates_suppressed": 1,
+  "unique_watch_slot_alerts": 100,
+  "room_polls": 14400,
+  "shared_confirmation_reads": 86,
+  "max_per_room_poll_gap_s": 102,
+  "peak_library_requests_in_rolling_60s": 20,
+  "baseline": {
+    "assumed_sink_delay_s": 5,
+    "within_180s": 100,
+    "p95_s": 103,
+    "max_s": 109
+  },
+  "slow_sink": {
+    "assumed_sink_delay_s": 90,
+    "within_180s": 87,
+    "p95_s": 188,
+    "max_s": 194
+  }
+}
