@@ -25,7 +25,7 @@ The service runs for 24 simulated hours with 17 open rooms and 200 Active watche
 | Release to simulated acceptance, 5 s sink delay | 100/100 within 180 s, p95 103 s, max 109 s |
 | Release to simulated acceptance, 90 s sink delay | 87/100 within 180 s, p95 188 s, max 194 s |
 
-The p95 is the 95th sorted delay over the same 100 persistent releases in both runs. The sink delay is an input. The replay times the path from release through discovery, shared confirmation and simulated acceptance. Live source latency, simultaneous sends for overlapping watches, process recovery, provider throttling and delivery to a student's email service still need separate evidence.
+The p95 is the 95th sorted delay over the same 100 persistent releases in both runs. The sink delay is an input. The replay dispatches each owner's single eligible match after that room's confirmation. UC-02 groups a student's matches across a complete cycle. For a match found in the first room, waiting for the last of 17 rooms at six-second spacing could add 96 seconds and require another confirmation. The P3 spike must include that wait and any extra reads. Live source latency, process recovery, provider throttling and delivery to a student's email service also need evidence.
 
 ## Decision for P3
 
