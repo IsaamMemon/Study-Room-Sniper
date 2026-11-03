@@ -5,7 +5,7 @@
 | Revision | Evidence | Change |
 | --- | --- | --- |
 | P1 v0.1, 18 Oct | [P1 in the baseline tree](https://github.com/PaperBagTrick/Study-Room-Sniper/blob/0ad8db1651e596903e6688aca1606540d964b289/docs/Study_Room_Sniper_P1.pdf) | Proposal, acceptance criteria and four initial use cases. The instructor's review describes a different, earlier repository state at the submission deadline. |
-| P2 v1.0 candidate, 3 Nov | [P2 change history](https://github.com/PaperBagTrick/Study-Room-Sniper/commits/docs/p2-analysis-design) | Preserves the 23 requirement IDs. Adds expanded use cases, five analysis/design diagrams, four decisions, the measured spike, survey instrument and P3 plan. |
+| P2 v1.0 candidate, 3 Nov | [Pull request #19](https://github.com/PaperBagTrick/Study-Room-Sniper/pull/19) · [commit history](https://github.com/PaperBagTrick/Study-Room-Sniper/commits/docs/p2-analysis-design) | Preserves the 23 requirement IDs. Adds expanded use cases, five analysis/design diagrams, four decisions, the measured spike, survey instrument and P3 plan. |
 
 ### Response to P1 feedback
 
@@ -27,6 +27,9 @@ The instructor awarded **28/32 for the team portion**. Work completed for P2 is 
 | Halogen419 | [`d0f955c`](https://github.com/PaperBagTrick/Study-Room-Sniper/commit/d0f955c) | Three use cases, five diagrams, four decisions and the extended trace. Issue #15. |
 | Halogen419 | [`62dd643`](https://github.com/PaperBagTrick/Study-Room-Sniper/commit/62dd643) | Carried-forward requirements, constraints and acceptance methods. Issue #12. |
 | Halogen419 | [`28cad85`](https://github.com/PaperBagTrick/Study-Room-Sniper/commit/28cad85) | Survey draft, elicitation record, P3 milestones and working agreement. Issue #4. |
+| Halogen419 | [`0e1a232`](https://github.com/PaperBagTrick/Study-Room-Sniper/commit/0e1a232) | Integrated P2 PDF, feedback record and repository guide. Issue #4. |
+
+Halogen419 opened [pull request #19](https://github.com/PaperBagTrick/Study-Room-Sniper/pull/19) on 3 November to review these changes against `main`. The conversation and review history record any subsequent teammate feedback and baseline decision.
 
 ### Individual evidence ledger
 
