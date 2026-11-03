@@ -1,47 +1,37 @@
 # Study Room Sniper
 
-Availability alerts for UT Dallas McDermott Library study rooms.
+Study Room Sniper alerts enrolled UT Dallas students when a McDermott Library study room fits their date, time window and group size. The student follows the alert to the library's booking page and makes their own reservation.
 
-A currently enrolled UTD student describes the room they need and when, and the
-system alerts them as soon as a matching room becomes bookable. It only alerts.
-It never books or cancels a room on a student's behalf.
+**Milestone:** P2 analysis and high-level design, v1.0 candidate for team review. The Python availability spike is the executable artifact for this milestone. Live library polling and NetID integration depend on responses from the library and OIT.
 
-## Course information
+## Read the project
 
-- Course: CE/CS/SE 3354 Software Engineering, Fall 2026
-- Team: 4, Section 003
-- Instructor: Prof. Sekir
+| Artifact | What it covers |
+| --- | --- |
+| [P2 analysis and high-level design (PDF)](docs/Study_Room_Sniper_P2.pdf) | Integrated report, figures, measured spike and baseline declaration |
+| [Revision history and response to P1 feedback](docs/records.md) | Rubric scores, changes since P1, commit and PR evidence, and individual follow-up |
+| [Requirements](docs/requirements.md) · [Constraints](docs/constraints.md) · [Verification](docs/verification.md) | The 14 functional requirements, six quality requirements and three constraints carried forward from P1 |
+| [Use cases and analysis models](docs/analysis.md) | Create a watch, receive an alert, and review or cancel a watch |
+| [Architecture](docs/architecture.md) · [Design decisions](docs/decisions.md) | Quality scenarios, deployment boundaries and the costs of the four architecture decisions |
+| [Requirement traceability](docs/traceability.md) | Each requirement's path to a use case, model concept, component, decision and evidence |
+| [Availability spike](docs/spikes/availability/README.md) | Reproduction command, measured results and what remains to check on a real source |
+| [Elicitation](docs/elicitation/README.md) · [P3 plan and open questions](docs/plan.md) | Student survey, evidence status, working agreement, risks and proposed v1.0 baseline |
+| [P1 proposal and requirements (PDF)](docs/Study_Room_Sniper_P1.pdf) | Historical v0.1 baseline |
 
-## Team
+## Run the P2 spike
 
-| Name |
-| Alexander Eng | 
-| Arshan Khimani |
-| Lee Baillard | 
-| Mayand Dhami |
-| Henry McGahan |
-| Isaam Memon |
+From the repository root, with Python 3.10 or later:
 
-## Status
+```sh
+python docs/spikes/availability/replay.py
+```
 
-Current milestone: P1 (Proposal and Requirements), baseline v0.1.
+The run uses a virtual clock and fictional availability for 17 rooms and 200 Active watches. Compare the printed JSON with [the recorded output](docs/spikes/availability/result.json). The peak was 20 requests per rolling minute. Slowing the simulated email acknowledgment from 5 to 90 seconds reduced the number of releases meeting the 180-second target from 100/100 to 87/100.
 
-## Documentation
+## Team and workflow
 
-- [P1 Proposal and Requirements](docs/Study_Room_Sniper_P1.pdf)
-- Spike notes: `docs/spikes/` (added when the spike is done)
-- Elicitation notes: `docs/elicitation/` (added when we hear back from the library and OIT)
+CE/CS/SE 3354 Software Engineering, Fall 2026 · Team 4, Section 003 · Prof. Sekir.
 
-## Repository conventions
+Alexander Eng, Arshan Khimani, Lee Baillard, Mayand Dhami, Henry McGahan and Isaam Memon.
 
-- `main` holds only reviewed work.
-- Changes are made on short-lived branches named `type/short-description` and
-  merged by a pull request reviewed by at least one other member.
-- Commit messages start with the issue number they serve, for example
-  `#12 add FR-04 acceptance test`.
-- Every requirement ID (FR-, QR-, CON-) has an issue with that ID in its title.
-  Changes to a baselined requirement go through an issue labelled `change-request`.
-
-## Running the project
-
-Not applicable yet. P1 covers requirements only; no code has been written.
+Use a short-lived `type/description` branch, begin each logical commit with the issue it serves, and open a pull request. Another member reviews the work before merge to `main`. Each member commits their own work and links the commit and review in the contribution record. Changes to a baselined requirement go through a `change-request` issue. The [working agreement](docs/plan.md) gives the proposed meeting cadence and identifies GitHub Issues as the coordination channel.
