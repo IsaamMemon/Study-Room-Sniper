@@ -2,7 +2,7 @@
 
 Study Room Sniper helps an enrolled UT Dallas student find a study room at Eugene McDermott Library. Today a student who finds the rooms occupied must revisit the library calendar to see whether a cancellation or a lapsed hold has freed a slot. The student saves a date, time window and group size once. When a matching slot appears, the service sends a link to the library calendar. The student makes any reservation there.
 
-This record carries the 18 October 2026 P1 requirements into the P2 analysis and design review for Team 4, Section 003. The course instructor, TA and team can use the stable IDs to follow each requirement into its analysis, design decision and proposed acceptance check. [P1 baseline](Study_Room_Sniper_P1.pdf) · [Constraint details](constraints.md) · [Verification](verification.md)
+The [P1 baseline](Study_Room_Sniper_P1.pdf) defines the watch and its acceptance criteria. The [constraints](constraints.md) cover NetID, read-only library access and cost. The [verification guide](verification.md) gives the checks for each requirement.
 
 ### Scope and vocabulary
 
@@ -26,11 +26,11 @@ The team controls the watch interface, watch state, periodic reader, matching, a
 
 | Stakeholder | Need and evidence status |
 | --- | --- |
-| Students | Set up a watch quickly on a phone, receive enough detail to act and stop alerts when plans change. P1 inferred these needs from student experience and library policy. Q5 calls for direct student evidence. |
+| Students | Set up a watch quickly on a phone, receive enough detail to act and stop alerts when plans change. The pilot asks students how often they check again and what email delay they could use (Q5). |
 | Students using assistive technology | Complete watch creation and watch management with keyboard or screen reader and receive information independent of color or sound. P1 references WCAG. Direct consultation and campus guidance remain open under Q6. |
 | Library reservations staff | Keep library traffic within an acceptable rate and preserve fair access. P1 inferred this from published policies. The library's approval of the source and rate remains open. |
 | UTD OIT | Approve NetID integration and the attributes a student project can receive. Q3 and Q6 require an OIT or campus accessibility response. |
-| Team and operators | Work within a zero-cost budget and detect stale reads and failures. P1 identifies these as the team's own needs. |
+| Team and operators | Work within a zero-cost budget and detect stale reads and failures. The operator view shows when a read last succeeded. |
 
 ### Assumptions and feasibility at P2
 

@@ -1,6 +1,6 @@
 ## 7 Design rationale
 
-The following records describe the design proposed for the P2 baseline. Each has a condition that would justify reopening the decision.
+Three limits shape the design: the library request budget, the time a student can wait for an alert, and the team's zero-cost budget.
 
 ### ADR-01 Keep one deployable and one background reader
 

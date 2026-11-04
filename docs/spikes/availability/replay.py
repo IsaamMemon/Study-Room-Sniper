@@ -1,8 +1,9 @@
 """Replay a fictional library day and print the P2 measurements. Python 3.10+."""
 
-from dataclasses import dataclass
-from math import ceil
 import json
+from dataclasses import dataclass
+from itertools import pairwise
+from math import ceil
 
 
 ROOMS = 17
@@ -11,13 +12,14 @@ POLL_SPACING = 6
 CONFIRM_AFTER = 3
 PERSISTENT_SLOTS = 100
 ROOM_CAPACITY = 6
+SLOT_MINUTES = 30
 
 
 @dataclass(frozen=True)
 class Slot:
     room: int
     day: int
-    start: int  # minutes from midnight; all fixture slots last 30 minutes
+    start: int  # minutes from midnight
     released: int  # simulated seconds from start of replay
     removed: int | None = None
 
@@ -33,22 +35,27 @@ class Watch:
     group: int
 
     def matches(self, slot):
-        return (self.day == slot.day and self.start <= slot.start
-                and slot.start + 30 <= self.end and self.group <= ROOM_CAPACITY)
+        return (
+            self.day == slot.day
+            and self.start <= slot.start
+            and slot.start + SLOT_MINUTES <= self.end
+            and self.group <= ROOM_CAPACITY
+        )
 
 
 def fixtures():
     slots = []
     watches = []
     for index in range(PERSISTENT_SLOTS):
-        # Five simultaneous waves of 20 releases. Their phase shifts vs. the reader.
+        # Each group of 20 opens at a different point in the polling cycle.
         wave, period = divmod(index, 20)
         day = 2 + wave
-        start = 8 * 60 + 30 * period
+        start = 8 * 60 + SLOT_MINUTES * period
         released = 601 + wave * 18_007
         slots.append(Slot(index % ROOMS, day, start, released))
-        # Distinct owners. One positive and one too-large group for this window.
-        watches.extend([Watch(day, start, start + 30, 4), Watch(day, start, start + 30, 8)])
+        # Both students want this time, but only the group of four fits.
+        watches.append(Watch(day, start, start + SLOT_MINUTES, 4))
+        watches.append(Watch(day, start, start + SLOT_MINUTES, 8))
 
     # Room 1 is read at t=6. A second slot for watch 0 vanishes before t=9.
     slots.append(Slot(1, slots[0].day, slots[0].start, released=5, removed=8))
@@ -90,12 +97,14 @@ def simulate():
         room = poll_time // POLL_SPACING % ROOMS
         requests.append(poll_time)
         polls[room].append(poll_time)
-        candidates = [
-            (watch_id, slot_id)
-            for slot_id, slot in by_room[room] if slot.visible(poll_time)
-            for watch_id, watch in enumerate(watches)
-            if (watch_id, slot_id) not in sent and watch.matches(slot)
-        ]
+        candidates = []
+        for slot_id, slot in by_room[room]:
+            if not slot.visible(poll_time):
+                continue
+            for watch_id, watch in enumerate(watches):
+                pair = (watch_id, slot_id)
+                if pair not in sent and watch.matches(slot):
+                    candidates.append(pair)
         if candidates:
             # A single confirmation reads this room for every candidate pair.
             confirm_time = poll_time + CONFIRM_AFTER
@@ -110,14 +119,23 @@ def simulate():
                     suppressed += 1
 
     expected_pairs = {(2 * slot_id, slot_id) for slot_id in range(PERSISTENT_SLOTS)}
-    if sent != expected_pairs or len(confirmed_delays) != len(expected_pairs) or suppressed != 1:
-        raise AssertionError("Unexpected recipient, missing or duplicate alert, or stale slot sent")
-    max_gap = max(later - earlier for room_polls in polls
-                  for earlier, later in zip(room_polls, room_polls[1:]))
+    if sent != expected_pairs:
+        raise AssertionError(f"Missing alerts: {expected_pairs - sent}. Unexpected alerts: {sent - expected_pairs}.")
+    if len(confirmed_delays) != len(sent):
+        raise AssertionError("A watch received more than one alert for the same slot")
+    if suppressed != 1:
+        raise AssertionError(f"Expected one stale match at confirmation, found {suppressed}")
+    max_gap = max(
+        later - earlier for room_polls in polls for earlier, later in pairwise(room_polls)
+    )
     peak = peak_minute(requests)
-    base = delivery_metrics(confirmed_delays, 5)
-    if max_gap > 120 or peak > 20 or base["within_180s"] < 95:
-        raise AssertionError("Baseline replay missed a P1 threshold")
+    baseline = delivery_metrics(confirmed_delays, 5)
+    if max_gap > 120:
+        raise AssertionError(f"A room went {max_gap} seconds between reads (limit 120)")
+    if peak > 20:
+        raise AssertionError(f"Sent {peak} requests in one rolling minute (limit 20)")
+    if baseline["within_180s"] < 95:
+        raise AssertionError(f"Only {baseline['within_180s']} of 100 alerts arrived within 180 seconds")
     return {
         "simulated_hours": DAY_SECONDS // 3600,
         "rooms": ROOMS,
@@ -129,7 +147,7 @@ def simulate():
         "shared_confirmation_reads": rechecks,
         "max_per_room_poll_gap_s": max_gap,
         "peak_library_requests_in_rolling_60s": peak,
-        "baseline": base,
+        "baseline": baseline,
         "slow_sink": delivery_metrics(confirmed_delays, 90),
     }
 

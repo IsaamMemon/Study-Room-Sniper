@@ -1,45 +1,45 @@
 ## 0 Revision and contribution record
 
-**Document status.** P2 analysis and high-level design, v1.0 candidate, 3 November 2026. Team 4, Section 003, CE/CS/SE 3354. The repository version of P1 at commit `0ad8db1` supplies the v0.1 requirements, IDs and use-case names.
+Team 4, Section 003 · CE/CS/SE 3354 · 3 November 2026
 
-| Revision | Evidence | Change |
+| Revision | Record | Changes |
 | --- | --- | --- |
-| P1 v0.1, 18 Oct | [P1 in the baseline tree](https://github.com/PaperBagTrick/Study-Room-Sniper/blob/0ad8db1651e596903e6688aca1606540d964b289/docs/Study_Room_Sniper_P1.pdf) | Proposal, acceptance criteria and four initial use cases. The instructor's review describes a different, earlier repository state at the submission deadline. |
-| P2 v1.0 candidate, 3 Nov | [Pull request #19](https://github.com/PaperBagTrick/Study-Room-Sniper/pull/19) · [commit history](https://github.com/PaperBagTrick/Study-Room-Sniper/commits/docs/p2-analysis-design) | Preserves the 23 requirement IDs. Adds expanded use cases, five analysis/design diagrams, four decisions, the measured spike, survey instrument and P3 plan. |
+| v0.1 · 18 October | [P1 proposal](https://github.com/PaperBagTrick/Study-Room-Sniper/blob/0ad8db1651e596903e6688aca1606540d964b289/docs/Study_Room_Sniper_P1.pdf) | Defined the room watch, alert conditions, 23 requirements and four use cases. |
+| v1.0 candidate · 3 November | [P2 pull request #19](https://github.com/PaperBagTrick/Study-Room-Sniper/pull/19) | Traces the same requirements through the design. Adds a polling experiment, a student survey and a plan for testing the service. |
 
 ### Response to P1 feedback
 
-| Instructor finding | P2 response | Evidence still needed |
+| Rubric item | Changes in P2 | Next step |
 | --- | --- | --- |
-| C1 · 6.5/8. Establish student need and technical feasibility. | Added a survey that asks enrolled students about recent attempts to reserve a McDermott room. The availability study distinguishes a public inventory from a supported feed and includes a reproducible latency experiment (§8). | At least ten student responses, the library's supported read contract, and permission for the intended rate. |
-| C2 · 10/10. Precise stub tests and measurable quality thresholds. | Preserved the 14 functional requirements, six quality requirements and three constraints. The acceptance guide separates simulated observations from tests that need a provider or people. | Human usability and accessibility checks, provider acceptance evidence and the 14-day trial. |
-| C3 · 8/8. Initial use cases and traceability. | Expanded UC-01 and UC-02, added the cancellation walkthrough, and mapped all 23 IDs to concepts, components and decisions in §9. | One independent member review of the analysis and the trace. |
-| C4 · 3.5/6. Deadline tree lacked the cited commits, PRs and documents. Meeting cadence and channel were missing. | Kept the original P1 intact. The review branch contains the actual source files and spike. §10 specifies a proposed meeting time, a named channel and the evidence expected from each owner. | Each teammate must commit their own substantive follow-up and obtain another member's review. Later artifacts do not establish what was present at the P1 deadline. |
-| C5 · 4/8. The individual commit and survey draft cited in P1 were absent. | Added a dated survey instrument and collection protocol under `docs/elicitation/`. Git identifies the account that added this draft. | Mayand can pilot and revise the instrument in a personal commit, then publish aggregate results and a review link. The P1 individual attribution remains unsupported. |
+| C1 · Need and feasibility · 6.5/8 | The survey asks what students did the last time they couldn't find a room. The spike measures how often one reader can check 17 rooms and how long an alert takes. | Pilot the survey with at least ten enrolled students. Ask the library which source and read rate it supports. |
+| C2 · Requirements · 10/10 | The acceptance checks retain the stub tests and numerical thresholds. Section 8 gives results for the request cap and simulated alert delay. | Measure the full delay at a test mailbox. Run the timed watch-creation task and accessibility walkthroughs. |
+| C3 · Use cases and traceability · 8/8 | UC-01 and UC-02 now have scenario tables and sequence diagrams. UC-03 follows a student through cancellation. Section 9 links all 23 IDs to the design. | Have a teammate trace one cancellation and one alert from the student action to the recorded outcome. |
+| C4 · Team plan and repository · 3.5/6 | The report, editable sections and replay are together in PR #19. Section 10 proposes a Wednesday meeting and GitHub Issues for team decisions. | Each member commits their section or findings and asks a teammate to review the change. |
+| C5 · Individual contribution · 4/8 | The student survey and its collection instructions are in [the survey commit](https://github.com/PaperBagTrick/Study-Room-Sniper/commit/28cad858389b412f6399438f779a350c804a76bb). | Record the pilot dates, response counts and any change students suggest to the watch settings. |
 
-The instructor awarded **28/32 for the team portion**. Work completed for P2 is recorded against its actual revision. Dates and repository references from the original individual claims have not been reused as proof.
+The P1 team score was **28/32**.
 
 ### P2 change evidence
 
-| Account | Revision | Artifact a reviewer can inspect |
+Halogen419 opened [PR #19](https://github.com/PaperBagTrick/Study-Room-Sniper/pull/19) on 3 November with the five commits below.
+
+| Commit | Issue | Files and decisions |
 | --- | --- | --- |
-| Halogen419 | [`b4a7b98`](https://github.com/PaperBagTrick/Study-Room-Sniper/commit/b4a7b98) | Runnable availability replay, observed JSON and reproduction instructions. Issue #14. |
-| Halogen419 | [`d0f955c`](https://github.com/PaperBagTrick/Study-Room-Sniper/commit/d0f955c) | Three use cases, five diagrams, four decisions and the extended trace. Issue #15. |
-| Halogen419 | [`62dd643`](https://github.com/PaperBagTrick/Study-Room-Sniper/commit/62dd643) | Carried-forward requirements, constraints and acceptance methods. Issue #12. |
-| Halogen419 | [`28cad85`](https://github.com/PaperBagTrick/Study-Room-Sniper/commit/28cad85) | Survey draft, elicitation record, P3 milestones and working agreement. Issue #4. |
-| Halogen419 | [`0e1a232`](https://github.com/PaperBagTrick/Study-Room-Sniper/commit/0e1a232) | Integrated P2 PDF, feedback record and repository guide. Issue #4. |
+| [`b4a7b98`](https://github.com/PaperBagTrick/Study-Room-Sniper/commit/b4a7b98d1980640afa08ba2a5d6540dbd320e0f2) | #14 | Availability replay, output and reproduction instructions. |
+| [`d0f955c`](https://github.com/PaperBagTrick/Study-Room-Sniper/commit/d0f955cffbe851089b370e2a44fdd4585d2be120) | #15 | Use cases, five diagrams, four architecture decisions and requirement traceability. |
+| [`62dd643`](https://github.com/PaperBagTrick/Study-Room-Sniper/commit/62dd6434b94f5e09dbcf4d610e0bbdd8262fa7be) | #12 | Requirements, constraints and their acceptance checks. |
+| [`28cad85`](https://github.com/PaperBagTrick/Study-Room-Sniper/commit/28cad858389b412f6399438f779a350c804a76bb) | #4 | Survey questions, collection instructions, working agreement and P3 schedule. |
+| [`0e1a232`](https://github.com/PaperBagTrick/Study-Room-Sniper/commit/0e1a232d8ac8d843ea9388b8b2d520442d4a2805) | #4 | P2 report, contribution record and README. |
 
-Halogen419 opened [pull request #19](https://github.com/PaperBagTrick/Study-Room-Sniper/pull/19) on 3 November to review these changes against `main`. The conversation and review history record any subsequent teammate feedback and baseline decision.
+### Team responsibilities
 
-### Individual evidence ledger
+The P1 roles carry through to the review. The proposed tasks below identify who handles each follow-up. Completed changes are recorded in the [PR commit history](https://github.com/PaperBagTrick/Study-Room-Sniper/pull/19/commits).
 
-| P1 owner and area | P2 evidence that a reviewer can verify | Next individually attributable action |
+| Member | Area | Next contribution |
 | --- | --- | --- |
-| Alexander Eng · change control | P1 repository history records four commits under Alexander Eng. Individual P2 work awaits an authored change. | Record review decisions and resolve baseline approval in the PR. |
-| Arshan Khimani · technical feasibility | The spike is present on the P2 branch. Its Git author is Halogen419. | Review the harness and commit a source-contract check when the library responds. |
-| Lee Baillard · elicitation | A collection protocol exists. No stakeholder reply is recorded. | Submit a dated summary of actual library and OIT replies. |
-| Mayand Dhami · quality and accessibility | This AI-assisted change was prepared for the requester under GitHub account Halogen419. The survey draft is now inspectable. | Commit pilot revisions and actual survey counts under the student's own account. |
-| Henry McGahan · use cases and trace | The review branch contains the analysis and trace. Independent authorship has not been claimed. | Walk one alternate flow end to end and commit any corrections. |
-| Isaam Memon · risk and integration | The risk register and PDF are included for review. | Rerun the spike, inspect the integration, and record an independent review. |
-
-No team vote, teammate approval, survey response, instructor acceptance or retroactive signature is recorded here. The PR conversation and Git history are the evidence for subsequent work.
+| Alexander Eng | Change control | Record the review decisions and the commit the team accepts as v1.0. |
+| Arshan Khimani | Feasibility | Compare the library's supported response with the fields and request budget used in the replay. |
+| Lee Baillard | Elicitation | Summarize the library and OIT replies with dates and affected requirement IDs. |
+| Mayand Dhami | Quality and accessibility | Pilot the survey, revise any unclear questions and publish the aggregate counts. |
+| Henry McGahan | Use cases and traceability | Walk through a watch cancelled between matching and dispatch. Check the sequence and trace against FR-09. |
+| Isaam Memon | Risk and integration | Rerun the spike from a clean checkout and review the assembled report. |

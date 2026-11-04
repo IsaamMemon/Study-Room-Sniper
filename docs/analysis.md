@@ -1,6 +1,6 @@
 ## 4. Use-case analysis
 
-McDermott Library owns the reservation. The student creates a watch, receives a link and decides whether to act. UC-01 through UC-03 expand the student goals from P1. UC-04, *Monitor service health*, is the operator's separate goal. A failed availability read in UC-02 supplies the evidence the operator sees under FR-14.
+Students create watches, receive alerts and manage their own watches in UC-01 through UC-03. They book on McDermott Library's site. In UC-04, the operator can see when a library read failed and when the last one succeeded (FR-14).
 
 ### UC-01 · Create a room watch
 

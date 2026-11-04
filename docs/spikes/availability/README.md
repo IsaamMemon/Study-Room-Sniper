@@ -1,20 +1,20 @@
 # Can the reader find a free slot in time?
 
-P1 leaves two questions coupled. Can the library supply credential-free, timestamped availability (A1), and can one shared reader confirm matches quickly enough without exceeding the library request budget (FR-03, FR-05, QR-01, QR-05)?
+The reader has to revisit every room within two minutes and make at most 20 library requests per rolling minute, including confirmations. This replay tests whether one shared reader can do both with 200 Active watches.
 
 ## What the public pages showed
 
-On 3 November 2026, an unauthenticated web-text lookup of the library index showed nine group rooms and eight smart rooms. Following its links yielded HTTP 429 for the group view, a retrieval cache miss for the all-rooms view, and a calendar legend with no timestamped slot rows in the retrieved Smart Rooms page. These observations establish the public inventory. They leave availability access and the library's permitted read rate open. The group view was not retried. [Library index](https://libcal.utdallas.edu/) · [Group view](https://libcal.utdallas.edu/spaces?gid=6673&lid=3972) · [Smart Rooms view](https://libcal.utdallas.edu/spaces?lid=4255) · [All rooms](https://libcal.utdallas.edu/allspaces)
+On 3 November the public library index listed nine group rooms and eight smart rooms. The group-room page returned HTTP 429, the all-rooms page could not be retrieved, and the smart-room page showed the calendar legend without dated slots in the retrieved text. The replay therefore uses simulated openings. The library still needs to confirm how to read live slots and at what rate. [Library index](https://libcal.utdallas.edu/) · [Group rooms](https://libcal.utdallas.edu/spaces?gid=6673&lid=3972) · [Smart rooms](https://libcal.utdallas.edu/spaces?lid=4255) · [All rooms](https://libcal.utdallas.edu/allspaces)
 
 ## Reproduce the experiment
 
-Run from this directory with Python 3.10 or later. The program uses a virtual clock, the standard library and fictional room availability. It prints JSON and exits with an error on an unexpected recipient, missed or duplicate pair, stale send or baseline threshold failure. Compare stdout with [the recorded run](result.json).
+From this directory, run the command below with Python 3.10 or later. It uses only the standard library. The JSON output should match [the recorded run](result.json). A failed check raises an error.
 
 ```sh
 python replay.py
 ```
 
-The service runs for 24 simulated hours with 17 open rooms and 200 Active watches. Five waves each release 20 slots at once. Every persistent slot has an eligible owner and a second watch whose group is too large. A 101st slot disappears between discovery and confirmation. The reader visits one room every six seconds and can read that same room three seconds later to confirm all new candidates together. Already-alerted pairs remain in memory for the run.
+Over one simulated day, 100 slots open in five groups of 20. Each slot fits one watch. A second watch requests the same time for a group too large for the room. One extra slot disappears between the first read and confirmation. The reader polls a room every six seconds and checks it again three seconds later if it finds new matches.
 
 | Measurement | Observed in the replay |
 | --- | ---: |
@@ -25,7 +25,7 @@ The service runs for 24 simulated hours with 17 open rooms and 200 Active watche
 | Release to simulated acceptance, 5 s sink delay | 100/100 within 180 s, p95 103 s, max 109 s |
 | Release to simulated acceptance, 90 s sink delay | 87/100 within 180 s, p95 188 s, max 194 s |
 
-The p95 is the 95th sorted delay over the same 100 persistent releases in both runs. The sink delay is an input. The replay dispatches each owner's single eligible match after that room's confirmation. UC-02 groups a student's matches across a complete cycle. For a match found in the first room, waiting for the last of 17 rooms at six-second spacing could add 96 seconds and require another confirmation. The P3 spike must include that wait and any extra reads. Live source latency, process recovery, provider throttling and delivery to a student's email service also need evidence.
+The two email-delay runs use the same 100 releases. The 95th-percentile time includes the assumed email delay. Each recipient in this run has one qualifying slot. In UC-02, a student can match several rooms in one cycle. An opening found in the first room could wait another 96 seconds for the last room's read, then need a fresh confirmation. The next experiment should time that whole path through acceptance at a test mailbox.
 
 ## Decision for P3
 

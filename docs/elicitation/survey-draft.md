@@ -1,10 +1,10 @@
 # Student survey · room availability alerts
 
-**Instrument version** 0.1, drafted 3 November 2026 for P2 review. **Intended owner** Mayand Dhami. **Status** Ready for a student pilot. No responses have been collected for this record.
+Draft 0.1 · 3 November 2026 · Pilot lead: Mayand Dhami
 
 ## Purpose and collection
 
-Q5 asks whether the proposed watch behavior and thresholds fit students' experience. Recruit at least ten currently enrolled UTD students and record how and when they were recruited. Invite students who use and who do not use the McDermott room calendar. Report those groups separately when describing past booking problems. Use anonymous responses and omit names, email addresses, NetIDs and identifiable free text from the repository. Participation is voluntary and any question may be skipped.
+Find out how often students have trouble booking a room and how quickly an email would need to arrive for them to act. Recruit at least ten currently enrolled UTD students and record how and when they were recruited. Invite students who use and who do not use the McDermott room calendar. Report those groups separately when describing past booking problems. Use anonymous responses and omit names, email addresses, NetIDs and identifiable free text from the repository. Participation is voluntary and any question may be skipped.
 
 **Introduction to read to participants.** We are studying how UTD students find group study space at McDermott Library. This survey takes about three minutes. Please describe your own experience. The proposed tool would email you when a matching slot appears. You would still book it on the library's site.
 
@@ -24,7 +24,7 @@ Q5 asks whether the proposed watch behavior and thresholds fit students' experie
 ## How to report the result
 
 1. Record dates, recruitment location or channel, number approached if known, number responding, and eligible responses. Report unanswered items separately. Keep the denominator with each count.
-2. For C1, report the fraction of recent room seekers who encountered no suitable room at first check and how many checked again. For Q5, report the distributions for S4–S7. Aggregate S8 themes without publishing raw personal text.
+2. Of the students who tried to book a room, count how many found no suitable room on their first check. Of those, count how many checked again. Report counts for each answer to S4–S7. Aggregate S8 themes without publishing raw personal text.
 3. Compare the distributions with QR-01's 180-second target, FR-13's five-watch cap and the rule that an alerted watch remains Active. A respondent's answer about tolerable delay measures preference. The separate timed QR-03 study measures whether a first-time user can actually create a watch.
 4. The person who runs the survey should commit a dated aggregate report in this directory, link the issue and request a teammate's review. If fewer than ten eligible students respond, report the count and keep the target open.
 

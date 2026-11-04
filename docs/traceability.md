@@ -1,6 +1,6 @@
 ## 9 Traceability and gap analysis
 
-The P1 requirement IDs and use-case links are preserved below. C1 through C6 and S1 refer to the components and store in §6. The final column identifies a check or dependency. A design link alone does not demonstrate that the requirement passes.
+For each requirement, the tables show where the behavior occurs, which component owns it, and how to check it. Component IDs C1–C6 and the shared store S1 appear in §6.
 
 ### 9.1 Functional requirements
 

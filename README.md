@@ -1,22 +1,10 @@
 # Study Room Sniper
 
-Study Room Sniper alerts enrolled UT Dallas students when a McDermott Library study room fits their date, time window and group size. The student follows the alert to the library's booking page and makes their own reservation.
+When a McDermott Library room is booked, students have to check the calendar again to catch a cancellation. Study Room Sniper lets an enrolled UT Dallas student save a date, time window and group size. If a room opens up, the student gets an email with a link to book it on the library's site.
 
-**Milestone:** P2 analysis and high-level design, v1.0 candidate for team review. The Python availability spike is the executable artifact for this milestone. Live library polling and NetID integration depend on responses from the library and OIT.
+P2 is ready for team review in [PR #19](https://github.com/PaperBagTrick/Study-Room-Sniper/pull/19). The polling experiment runs locally with Python. Live availability and NetID sign-in depend on the library and OIT.
 
-## Read the project
-
-| Artifact | What it covers |
-| --- | --- |
-| [P2 analysis and high-level design (PDF)](docs/Study_Room_Sniper_P2.pdf) | Integrated report, figures, measured spike and baseline declaration |
-| [Revision history and response to P1 feedback](docs/records.md) | Rubric scores, changes since P1, commit and PR evidence, and individual follow-up |
-| [Requirements](docs/requirements.md) · [Constraints](docs/constraints.md) · [Verification](docs/verification.md) | The 14 functional requirements, six quality requirements and three constraints carried forward from P1 |
-| [Use cases and analysis models](docs/analysis.md) | Create a watch, receive an alert, and review or cancel a watch |
-| [Architecture](docs/architecture.md) · [Design decisions](docs/decisions.md) | Quality scenarios, deployment boundaries and the costs of the four architecture decisions |
-| [Requirement traceability](docs/traceability.md) | Each requirement's path to a use case, model concept, component, decision and evidence |
-| [Availability spike](docs/spikes/availability/README.md) | Reproduction command, measured results and what remains to check on a real source |
-| [Elicitation](docs/elicitation/README.md) · [P3 plan and open questions](docs/plan.md) | Student survey, evidence status, working agreement, risks and proposed v1.0 baseline |
-| [P1 proposal and requirements (PDF)](docs/Study_Room_Sniper_P1.pdf) | Historical v0.1 baseline |
+Read the [P2 analysis and design report (PDF)](docs/Study_Room_Sniper_P2.pdf) or the [original P1 proposal (PDF)](docs/Study_Room_Sniper_P1.pdf).
 
 ## Run the P2 spike
 
@@ -26,7 +14,13 @@ From the repository root, with Python 3.10 or later:
 python docs/spikes/availability/replay.py
 ```
 
-The run uses a virtual clock and fictional availability for 17 rooms and 200 Active watches. Compare the printed JSON with [the recorded output](docs/spikes/availability/result.json). The peak was 20 requests per rolling minute. Slowing the simulated email acknowledgment from 5 to 90 seconds reduced the number of releases meeting the 180-second target from 100/100 to 87/100.
+The replay runs a day of openings for 17 rooms and 200 watches. It peaked at 20 library requests in a rolling minute. With a five-second email delay, all 100 alerts met the three-minute target. With a 90-second delay, 87 did. See the [experiment](docs/spikes/availability/README.md) and [recorded output](docs/spikes/availability/result.json).
+
+## Project files
+
+- What the service must do · [requirements](docs/requirements.md), [constraints](docs/constraints.md) and [acceptance checks](docs/verification.md).
+- How a watch works · [use cases and diagrams](docs/analysis.md), [architecture](docs/architecture.md), [design decisions](docs/decisions.md) and [traceability](docs/traceability.md).
+- Team work · [changes since P1](docs/records.md), [student survey and library questions](docs/elicitation/README.md), and [P3 schedule and open questions](docs/plan.md).
 
 ## Team and workflow
 
@@ -34,4 +28,4 @@ CE/CS/SE 3354 Software Engineering, Fall 2026 · Team 4, Section 003 · Prof. Se
 
 Alexander Eng, Arshan Khimani, Lee Baillard, Mayand Dhami, Henry McGahan and Isaam Memon.
 
-Use a short-lived `type/description` branch, begin each logical commit with the issue it serves, and open a pull request. Another member reviews the work before merge to `main`. Each member commits their own work and links the commit and review in the contribution record. Changes to a baselined requirement go through a `change-request` issue. The [working agreement](docs/plan.md) gives the proposed meeting cadence and identifies GitHub Issues as the coordination channel.
+Start a `type/description` branch and put the issue number first in each commit message. Another teammate reviews the pull request before it goes into `main`. For changes to a baselined requirement, open a `change-request` issue. The [working agreement](docs/plan.md) covers meetings, decisions and individual contributions.
