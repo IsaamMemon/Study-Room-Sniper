@@ -1,47 +1,31 @@
 # Study Room Sniper
 
-Availability alerts for UT Dallas McDermott Library study rooms.
+When a McDermott Library room is booked, students have to check the calendar again to catch a cancellation. Study Room Sniper lets an enrolled UT Dallas student save a date, time window and group size. If a room opens up, the student gets an email with a link to book it on the library's site.
 
-A currently enrolled UTD student describes the room they need and when, and the
-system alerts them as soon as a matching room becomes bookable. It only alerts.
-It never books or cancels a room on a student's behalf.
+P2 is ready for team review in [PR #19](https://github.com/PaperBagTrick/Study-Room-Sniper/pull/19). The polling experiment runs locally with Python. Live availability and NetID sign-in depend on the library and OIT.
 
-## Course information
+Read the [P2 analysis and design report (PDF)](docs/Study_Room_Sniper_P2.pdf) or the [original P1 proposal (PDF)](docs/Study_Room_Sniper_P1.pdf).
 
-- Course: CE/CS/SE 3354 Software Engineering, Fall 2026
-- Team: 4, Section 003
-- Instructor: Prof. Sekir
+## Run the P2 spike
 
-## Team
+From the repository root, with Python 3.10 or later:
 
-| Name |
-| Alexander Eng | 
-| Arshan Khimani |
-| Lee Baillard | 
-| Mayand Dhami |
-| Henry McGahan |
-| Isaam Memon |
+```sh
+python docs/spikes/availability/replay.py
+```
 
-## Status
+The replay runs a day of openings for 17 rooms and 200 watches. It peaked at 20 library requests in a rolling minute. With a five-second email delay, all 100 alerts met the three-minute target. With a 90-second delay, 87 did. See the [experiment](docs/spikes/availability/README.md) and [recorded output](docs/spikes/availability/result.json).
 
-Current milestone: P1 (Proposal and Requirements), baseline v0.1.
+## Project files
 
-## Documentation
+- What the service must do · [requirements](docs/requirements.md), [constraints](docs/constraints.md) and [acceptance checks](docs/verification.md).
+- How a watch works · [use cases and diagrams](docs/analysis.md), [architecture](docs/architecture.md), [design decisions](docs/decisions.md) and [traceability](docs/traceability.md).
+- Team work · [changes since P1](docs/records.md), [student survey and library questions](docs/elicitation/README.md), and [P3 schedule and open questions](docs/plan.md).
 
-- [P1 Proposal and Requirements](docs/Study_Room_Sniper_P1.pdf)
-- Spike notes: `docs/spikes/` (added when the spike is done)
-- Elicitation notes: `docs/elicitation/` (added when we hear back from the library and OIT)
+## Team and workflow
 
-## Repository conventions
+CE/CS/SE 3354 Software Engineering, Fall 2026 · Team 4, Section 003 · Prof. Sekir.
 
-- `main` holds only reviewed work.
-- Changes are made on short-lived branches named `type/short-description` and
-  merged by a pull request reviewed by at least one other member.
-- Commit messages start with the issue number they serve, for example
-  `#12 add FR-04 acceptance test`.
-- Every requirement ID (FR-, QR-, CON-) has an issue with that ID in its title.
-  Changes to a baselined requirement go through an issue labelled `change-request`.
+Alexander Eng, Arshan Khimani, Lee Baillard, Mayand Dhami, Henry McGahan and Isaam Memon.
 
-## Running the project
-
-Not applicable yet. P1 covers requirements only; no code has been written.
+Start a `type/description` branch and put the issue number first in each commit message. Another teammate reviews the pull request before it goes into `main`. For changes to a baselined requirement, open a `change-request` issue. The [working agreement](docs/plan.md) covers meetings, decisions and individual contributions.
