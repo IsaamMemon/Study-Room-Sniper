@@ -7,7 +7,7 @@ Compares the expanded use cases (4.2), the domain model (5.1) and the UC-01 / UC
 | Check | Result (pass, or what failed) | Fixed in |
 | --- | --- | --- |
 | K1 Every item in an actor column (4.2) is an attribute in the domain model (5.1) | Pass: all items appear as attributes of Student, Watch, Room, or Slot. | n/a |
-| K2 Every object on a sequence diagram is a domain class or a declared interaction object | Failed at first: WatchManager and AvailabilityMonitor are not in 5.1. Other objects are domain classes or external systems. | 5.2 (a): both declared as interaction objects |
+| K2 Every object on a sequence diagram is a domain class, a declared interaction object or an external system | Failed at first: WatchManager and AvailabilityMonitor are not in 5.1. Other objects are domain classes or external systems. | 5.2 (a): both declared as interaction objects |
 | K3 Every message on a sequence diagram corresponds to exactly one scenario-table row | Pass: 12 messages for UC-01 and 10 for UC-02, numbered as in the tables. | n/a |
 | K4 Every non-trivial step in 5.2 (a) has at least one scenario-table row | Pass: each step named in (a) cites its rows. | n/a |
 | K5 Every analyzed use case traces to at least one functional requirement | Pass: UC-01 to FR-01, FR-02, FR-10, FR-13; UC-02 to FR-03 to FR-08 and FR-12; UC-03 to FR-02, FR-09 to FR-11. | n/a |
