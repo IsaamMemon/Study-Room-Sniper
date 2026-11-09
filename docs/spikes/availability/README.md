@@ -32,3 +32,7 @@ The two email-delay runs use the same 100 releases. The 95th-percentile time inc
 Keep one reader with a shared request budget. Run against fixtures until the library answers Q1/Q2 with an approved source and rate. Then check whether one read covers a room's full booking horizon, whether it returns a stable room identifier, slot boundaries, status and capacity, and how the service signals throttling. If the feed requires a separate request for each room and each of seven dates, a sweep alone needs 119 reads against a two-minute allowance of 40. In that case the team needs a bulk feed or a change request before enabling live polling.
 
 The slow-sink run missed QR-01. A pilot should timestamp release and acceptance at a test mailbox and count per-recipient volume before choosing a provider. As of 3 November 2026, Resend listed a free limit of 100 emails a day, exactly the 100 distinct recipients in this fixture. Firebase listed Cloud Messaging at no cost. Account eligibility, delivery to UTD addresses, handling of push subscriptions under QR-06 and real demand remain open for CON-03. [Resend pricing](https://resend.com/pricing) · [Firebase pricing](https://firebase.google.com/pricing)
+
+## Independent rerun
+8 November 2026 · Isaam Memon · Python 3.13.3 on Windows, fresh clone of main.
+`python replay.py` completed with no failed checks, and its JSON output matched result.json exactly.
