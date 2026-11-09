@@ -1,6 +1,6 @@
 # Free-tier limits and the read cycle (R6, ADR-04)
 
-Study Room Sniper · Isaam Memon · <DATE>
+Study Room Sniper · Isaam Memon · 11/8/26
 
 ## What has to fit
 
